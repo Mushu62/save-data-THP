@@ -22,7 +22,7 @@ def get_deputy_data(deputy_url)
     "last_name" => last_name,
     "email" => email
   }
-
+  
 end
 
 def get_deputy_url_array

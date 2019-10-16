@@ -61,23 +61,23 @@ end
 print "Voici les 10 premiers résultats :" , dark_trader(10)
 puts
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+def save_as_json(department_url)
+  #Méthodes récupérant un array pour les emails et un pour les noms
+          names = get_city_names(department_url) 
+          emails = scrapping(department_url)
+  #Création d'un hash vide pour recevoir chaque couple name:email
+          temp_hash = Hash.new
+  #Boucle qui associe chaque nom à l'email ayant le même index et stocke chaque paire dans le hash
+          i = 0
+          (names.length).times do
+              temp_hash[names[i]] = emails[i]
+              i += 1
+          end
+  #création du fichier tonhalls_and_emails.json dans le dossier db et son remplissage avec le hash
+          File.open("emails.json","w") do |f|
+                f.write(temp_hash.to_json)
+          end
+      end
 
 #___________ Archives ___________#
 
@@ -96,4 +96,7 @@ def test_open_by_restclient
   require 'restclient'
   page = Nokogiri::HTML(RestClient.get("http://en.wikipedia.org/"))   
   puts page.class   # => Nokogiri::HTML::Document
+end
+
+def save_as_JSON
 end
